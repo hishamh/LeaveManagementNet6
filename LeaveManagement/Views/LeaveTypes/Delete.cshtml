@@ -1,0 +1,34 @@
+﻿@model LeaveTypeVM
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete @Model.Name</h3>
+<div>
+    <h4>LeaveType</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-5">
+            @Html.DisplayNameFor(model => model.DefaulDays)
+        </dt>
+        <dd class = "col-sm-7">
+            @Html.DisplayFor(model => model.DefaulDays)
+        </dd>
+  
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> &nbsp;
+        <a asp-action="Index" class="btn btn-dark">Back to List</a>
+    </form>
+</div>

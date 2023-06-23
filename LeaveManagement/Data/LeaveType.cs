@@ -3,7 +3,7 @@
     public class LeaveType:BaseEntity
     {
         public string Name { get; set; }
-        public string DefaulDays { get; set; }
+        public int DefaulDays { get; set; }
 
 
 

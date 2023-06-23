@@ -1,0 +1,99 @@
+﻿@model IEnumerable<LeaveTypeVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-success" asp-action="Create"><i class="fas fa-plus-octagon" style="color: #1d8756;"></i>Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DefaulDays)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DefaulDays)
+            </td>
+            
+            <td>
+
+                    <a asp-action="Edit" class="btn btn-warning" asp-route-id="@item.Id"><i class="far fa-edit" style="color: #000000;"></i></a> &nbsp;
+                    <a asp-action="Details" class="btn btn-info" asp-route-id="@item.Id"><i class="fal fa-file-invoice" style="color: #000000;"></i></a> &nbsp;
+                    <button data-iddd="@item.Id" type="button" class="btn btn-danger deleteBtn" asp-route-id="@item.Id"><i class="far fa-trash-alt" style="color: #000000;"></i></button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<form id="deleteFrom" asp-action="Delete">
+    <input type="hidden" id="leaveTypeId" name="Id" />
+
+</form>
+
+@section Scripts{
+
+    <script>
+
+        $('.table').DataTable();
+
+
+
+        $(function(){
+
+            $('.deleteBtn').click(function(e){
+
+                swal({
+                    
+                    title: "Are you sure?",
+
+                    text: "Are you sure you want to delete this recorde",
+                    
+                    icon: "warning",
+
+                    buttons: true,
+
+                    dangerMode: true
+                        
+                
+                }).then((confirm) =>{
+                        
+                    if(confirm){
+                        var btn = $(this);
+                        var id = btn.data("iddd");
+                        $('#leaveTypeId').val(id)
+                        $('#deleteFrom').submit()
+
+                    }
+                
+                });
+
+            });
+
+        });
+
+
+
+
+    </script>
+
+
+}
